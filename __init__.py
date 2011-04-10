@@ -1,5 +1,7 @@
 from beets.plugins import BeetsPlugin
 from beets.ui import Subcommand
+from beets import library
+import beets
 import urllib
 import urllib2
 
@@ -19,6 +21,11 @@ update_mb_collection = Subcommand('mbupdate',
 def updateCollection(lib, config, opts, args):
     username = beets.ui.config_val(config, 'musicbrainz', 'user', '')
     password = beets.ui.config_val(config, 'musicbrainz', 'pass', '')
+    #Get a list of all the albums
+    albums =  map(lambda a: a.mb_albumid, lib.albums())
+    print 'Updating MusicBrainz collection...'
+    sendAlbums(username, password, albums)
+    print '...MusicBrainz collection updated'
 
 update_mb_collection.func = updateCollection
 
