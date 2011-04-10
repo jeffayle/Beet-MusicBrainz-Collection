@@ -4,7 +4,8 @@ from beets.ui import Subcommand
 update_mb_collection = Subcommand('mbupdate',
         help='Update MusicBrainz collection')
 def updateCollection(lib, config, opts, args):
-    print "Hello everybody! I'm a plugin!"
+    username = beets.ui.config_val(config, 'musicbrainz', 'user', '')
+    password = beets.ui.config_val(config, 'musicbrainz', 'pass', '')
 
 update_mb_collection.func = updateCollection
 
