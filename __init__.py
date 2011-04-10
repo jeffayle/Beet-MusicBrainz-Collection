@@ -1,11 +1,13 @@
 from beets.plugins import BeetsPlugin
 from beets.ui import Subcommand
 
-my_super_command = Subcommand('super', help='do something super')
-def say_hi(lib, config, opts, args):
+update_mb_collection = Subcommand('mbupdate',
+        help='Update MusicBrainz collection')
+def updateCollection(lib, config, opts, args):
     print "Hello everybody! I'm a plugin!"
-my_super_command.func = say_hi
+
+update_mb_collection.func = updateCollection
 
 class MusicbrainzCollection(BeetsPlugin):
     def commands(self):
-            return [my_super_command]
+            return [update_mb_collection]
